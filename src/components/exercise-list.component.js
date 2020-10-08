@@ -20,7 +20,7 @@ export default class ExercisesList extends Component {
     this.state = {exercises: []};
   }
   componentDidMount() {
-    axios.get('http://localhost:5000/exercises/')
+    axios.get('https://exercise-tracker-usama.glitch.me/exercises/')
      .then(response => {
        this.setState({ exercises: response.data });
      })
@@ -29,7 +29,7 @@ export default class ExercisesList extends Component {
      })
   }
   deleteExercise(id) {
-    axios.delete('http://localhost:5000/exercises/'+id)
+    axios.delete('https://exercise-tracker-usama.glitch.me/exercises/'+id)
       .then(res => console.log(res.data));
     this.setState({
       exercises: this.state.exercises.filter(el => el._id !== id)
