@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../axios';
 
 const Exercise = props => (
   <tr>
@@ -20,7 +20,7 @@ export default class ExercisesList extends Component {
     this.state = {exercises: []};
   }
   componentDidMount() {
-    axios.get('https://exercise-tracker-usama.glitch.me/exercises/')
+    axios.get('/exercises/')
      .then(response => {
        this.setState({ exercises: response.data });
      })
@@ -29,7 +29,7 @@ export default class ExercisesList extends Component {
      })
   }
   deleteExercise(id) {
-    axios.delete('https://exercise-tracker-usama.glitch.me/exercises/'+id)
+    axios.delete('/exercises/'+id)
       .then(res => console.log(res.data));
     this.setState({
       exercises: this.state.exercises.filter(el => el._id !== id)

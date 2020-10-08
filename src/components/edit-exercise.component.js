@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import axios from 'axios';
+import axios from '../axios';
 
 export default class EditExercise extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class EditExercise extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://exercise-tracker-usama.glitch.me/exercises/'+this.props.match.params.id)
+    axios.get('/exercises/'+this.props.match.params.id)
       .then(response => {
         this.setState({
           username: response.data.username,
@@ -36,7 +36,7 @@ export default class EditExercise extends Component {
         console.log(error);
       })
 
-    axios.get('https://exercise-tracker-usama.glitch.me/users/')
+    axios.get('/users/')
       .then(response => {
         this.setState({ users: response.data.map(user => user.username) });
       })
@@ -81,7 +81,7 @@ export default class EditExercise extends Component {
 
     console.log(exercise);
 
-    axios.post('https://exercise-tracker-usama.glitch.me/exercises/update/'+this.props.match.params.id, exercise)
+    axios.post('/exercises/update/'+this.props.match.params.id, exercise)
       .then(res => console.log(res.data));
     
     window.location = '/';
